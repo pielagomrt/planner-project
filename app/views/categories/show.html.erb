@@ -1,0 +1,42 @@
+<div class="d-flex float-left">
+  <%= link_to edit_category_path(@category), class: 'btn btn-sm btn-warning' do %>
+      <span>✏</span>
+  <% end %> 
+  <%= link_to delete_category_path(@category), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Delete this article?' } do %>
+    <span>🗑</span>
+  <% end %>
+</div>
+
+<div class="d-flex float-right">
+    <%= link_to 'Go Back', categories_path, class: "btn btn-sm btn-default" %>
+</div>
+
+<br><br><br>
+
+<% if flash.any? %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-dismissible alert-<%= key.to_s %>">
+      <a class="close" data-dismiss="alert" aria-label="close" href='#'>&times;</a> 
+      <strong><%= value %></strong>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="mt-2 mb-4 text-center display-4">
+  <%= @category.title.upcase %>
+</div>
+
+<div class="text-muted mt-4 mb-4 text-center display-6 font-italic">
+  <%= simple_format(@category.description) %>
+</div>
+
+<div class="text-muted mt-4 mb-4 text-center display-6 small">
+  <%= @category.created_at.strftime("Created on %d-%^b-%Y, %l:%M %p UTC") %>
+  • Updated <%= time_ago_in_words(@category.updated_at) %> ago
+</div><hr>
+
+
+
+
+
+

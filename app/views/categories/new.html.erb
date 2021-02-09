@@ -1,0 +1,39 @@
+<%= form_with method: :post, scope: :category, url: create_category_path, local: true do |f| %>
+    <p>
+      <% if @category.errors.any? %>
+        <ul>
+          <div class="alert alert-dismissible alert-danger">
+            <% @category.errors.full_messages.each do |message| %>
+              <li class= "text-danger list-unstyled">
+                  <strong>ERROR: <%= message %></strong>
+              </li>
+            <% end %>
+          </div> 
+        </ul>
+      <% end %>
+    </p>
+<% end %>
+
+<div class="container masthead">
+  <%= form_with method: :post, scope: :category, url: create_category_path, local: true do |f| %>
+    <p>
+      <%= link_to '✖', categories_path, class: 'btn-sm close align-middle' %>
+    </p>
+    <br/>
+    <legend class="text-center font-weight-bold color-green">
+      NEW CATEGORY
+    </legend>
+    <br/>
+    <div class="form-floating mb-3">
+      <label for="floatingInput" class="text-muted"><%= f.label :title %></label><br/>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label for="comment" class="text-muted"><%= f.label :description %></label>
+      <%= f.text_area :description, class: 'form-control', size: '40x7', id: 'comment' %>
+    </div>
+    <p class="d-flex justify-content-center">
+      <%= f.submit "Create", class: 'btn btn-success font-weight-bold btn-block' %>
+    </p>
+  <% end %>
+</div>

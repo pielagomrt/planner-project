@@ -1,0 +1,60 @@
+<div class="text-muted mt-4 mb-4 text-center display-4">
+  PLANNER APP
+</div>
+<div class="d-flex justify-content-center">
+  <%= link_to "Add Category", new_category_path, class: 'btn btn-info btn-lg' %>
+</div><hr>
+
+<% if flash.any? %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-dismissible alert-<%= key.to_s %>">
+      <a class="close" data-dismiss="alert" aria-label="close" href='#'>&times;</a> 
+      <strong><%= value %></strong>
+    </div>
+  <% end %>
+<% end %>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Created</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @categories.each do |category| %>
+    <tbody>
+      <tr>
+        <div class="col-sm-10">
+          <td scope="row">
+            <%= link_to "View", show_category_path(category), class: 'btn btn-primary' %>
+          </td>
+          <td class="font-weight-bold align-middle">
+            <%= category.title.upcase %>
+          </td>
+          <td class="text-muted font-weight-light align-middle">
+            <%= truncate(category.description) %>
+          </td>
+          <td class="text-muted font-weight-light align-middle">
+            <%= category.created_at.strftime("%B %e, %Y at %l:%M %p UTC") %>
+          </td>
+        </div>
+        <div class="col-sm-2">
+          <td>
+            <%= link_to edit_category_path(category), class: 'btn btn-warning pull-right' do %>
+              <span>✏</span>
+            <% end %> 
+            <%= link_to delete_category_path(category), class: 'btn btn-danger pull-right', method: :delete, data: { confirm: 'Delete this article?' } do %>
+              <span>🗑</span>
+            <% end %>
+          </td>
+        </div>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
+
+

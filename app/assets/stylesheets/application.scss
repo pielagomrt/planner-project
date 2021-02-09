@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bootstrap
+ *= require_tree .
+ *= require_self
+ */
+
+ @import "../node_modules/bootstrap/scss/bootstrap";
+
+ 
+
+.btn {
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+.btn-danger {
+    margin-left: 5px;
+    background-color: rgb(238, 34, 34);
+
+}
+
+.btn-nav {
+    margin-right: -15px;
+}
+
+.btn-primary {
+  background-color:navy;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color:  rgb(19, 19, 179);
+}
+.btn-default {
+  background-color: lightgray;
+  font-weight: bold;
+}
+
+.btn-default:hover {
+  background-color: gainsboro;
+  color: black;
+}
+
+.btn-warning {
+  background-color: rgb(228, 133, 16);
+  color: white;
+  font-weight: bold;
+}
+
+.btn-warning:hover {
+  color: white;
+}
+
+.masthead {
+    margin-top: 20px;
+    padding: 10px 30px;
+    padding-top: 5px;
+    width: 35%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.color-green {
+  color: green;
+}
+
+.color-orange {
+  color:rgb(228, 133, 16);
+}
+
+.close {
+    font-size: 15px;
+}
+
+.item {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px;
+  border-radius: 10px;
+}
