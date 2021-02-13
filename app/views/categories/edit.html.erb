@@ -1,4 +1,6 @@
-<%= form_with method: :put, scope: :category, url: update_category_path, local: true do |f| %>
+<%= render template: 'layouts/category_header.html.erb' %>
+
+<%= form_with scope: :category, model: @category, local: true do |f| %>
     <p>
       <% if @category.errors.any? %>
         <ul>
@@ -15,7 +17,7 @@
 <% end %>
 
 <div class="container masthead">
-  <%= form_with method: :put, scope: :category, url: update_category_path, local: true do |f| %>
+  <%= form_with scope: :category, model: @category, local: true do |f| %>
     <p>
       <%= link_to '✖', categories_path, class: 'btn-sm close align-middle' %>
     </p>
@@ -25,12 +27,7 @@
     </legend>
     <br/>
     <div class="form-floating mb-3">
-      <label for="floatingInput" class="text-muted"><%= f.label :title %></label><br/>
-      <%= f.text_field :title, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <label for="comment" class="text-muted"><%= f.label :description %></label>
-      <%= f.text_area :description, class: 'form-control', size: '40x7', id: 'comment' %>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
     <p class="d-flex justify-content-center">
       <%= f.submit "Update", class: 'btn btn-warning btn-block' %>

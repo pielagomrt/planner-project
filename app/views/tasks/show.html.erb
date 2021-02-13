@@ -1,0 +1,48 @@
+<%= render template: 'layouts/tasks_header.html.erb' %>
+
+<% if flash.any? %>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-dismissible alert-<%= key.to_s %>">
+      <a class="close" data-dismiss="alert" aria-label="close" href='#'>&times;</a> 
+      <strong><%= value %></strong>
+    </div>
+  <% end %>
+<% end %>
+
+<div class='width m-auto d-flex'>
+  <%= link_to edit_category_task_path(@category.id, @task.id), class: 'mt-2 btn-sm close float-left' do %>
+    <span>✏</span>
+  <% end %>
+  <%= link_to category_task_path(@category.id, @task.id), class: 'mt-2 btn-sm close float-left', method: :delete, data: { confirm: 'Delete this TASK?' } do %>
+    <span>❌</span>
+  <% end %>
+  <%= link_to 'Back To Tasks', category_path(@category), class: "ml-auto btn btn-info btn-sm font-bold" %>
+</div>
+
+<div class='width m-auto'>
+  <table class="table m-8 mt-4">
+    <tbody>
+      <tr>
+        <th>TASK</th>
+        <td><%= @task.name.upcase %></td>
+      </tr>
+      <tr>
+        <th rowspan="2">DESCRIPTION</th>
+        <td rowspan="2"><%= word_wrap(@task.description, line_width: 8) %></td>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+        <th>DUE BY</th>
+        <td><%= @task.date.strftime("%d-%^B-%Y, %A") %></td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <div class="d-flex justify-content-center">
+            <button class="mt-0 btn btn-success">MARK AS COMPLETE</button>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table> 
+</div>

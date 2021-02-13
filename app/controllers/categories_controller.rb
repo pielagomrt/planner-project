@@ -24,6 +24,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @tasks = @category.tasks
   end
 
 
@@ -36,15 +37,15 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if @category.update(categories_params)
-      redirect_to show_category_path
-      flash[:warning] = "Successfully updated!"
+      redirect_to category_path(@category)
+      flash[:warning] = "Successfully updated a category!"
     else
       render :edit
     end
   end
 
 
-  def delete
+  def destroy
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to categories_path
@@ -56,7 +57,7 @@ class CategoriesController < ApplicationController
 
 
   def categories_params
-    params.require(:category).permit(:title, :description)
+    params.require(:category).permit(:name)
   end
 
 end
