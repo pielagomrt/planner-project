@@ -9,7 +9,7 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
 
     # submit form
     assert_difference 'Category.count', 1 do
-      post create_category_path, params: { category: { title: 'Lorem Ipsum', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' } }
+      post categories_path, params: { category: { name: 'Lorem Ipsum' } }
       assert_response :redirect
     end
             

@@ -9,14 +9,8 @@ class UpdateCategoryTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     # submit form
-    assert_changes 'fixture.title' do
-        put update_category_path(fixture), params: { category: { title: 'Lorem' } }
-        fixture.reload
-        assert_response :redirect
-    end
-
-    assert_changes 'fixture.description' do
-        put update_category_path(fixture), params: { category: { description: 'Lorem ipsum dolor' } }
+    assert_changes 'fixture.name' do
+        put category_path(fixture), params: { category: { name: 'Lorem' } }
         fixture.reload
         assert_response :redirect
     end

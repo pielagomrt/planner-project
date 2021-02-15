@@ -1,14 +1,15 @@
 require 'test_helper'
 
-class DeleteCategoryTest < ActionDispatch::IntegrationTest
+class DeleteTaskTest < ActionDispatch::IntegrationTest
 
   test 'should delete a category' do
     # get id
-    fixture = categories(:one)
-
+    category = categories(:one)
+    task = tasks(:one)
+    
     # delete button
-    assert_difference 'Category.count', -1 do
-      delete category_path(fixture)
+    assert_difference 'Task.count', -1 do
+      delete category_task_path(category.id, task.id)
       assert_response :redirect
     end
             
