@@ -23,6 +23,14 @@
   <table class="table m-8 mt-4">
     <tbody>
       <tr>
+        <th>STATUS</th>
+        <% if @task.completed? %>
+          <td class="text-success font-weight-bold">COMPLETED</td>
+        <% else %>
+          <td class="text-danger font-weight-bold">PENDING</td>
+        <% end %>
+      </tr>
+      <tr>
         <th>TASK</th>
         <td><%= @task.name.upcase %></td>
       </tr>
@@ -38,9 +46,15 @@
       </tr>
       <tr>
         <th colspan="2">
-          <div class="d-flex justify-content-center">
-            <button class="mt-0 btn btn-success">MARK AS COMPLETE</button>
-          </div>
+          <% if @task.completed? %>
+            <div class="d-flex justify-content-center">
+              <%= link_to "MARK AS PENDING", incomplete_task_path(@category.id, @task), method: :delete, class: 'mt-0 btn btn-danger' %>
+            </div>
+          <% else %>
+            <div class="d-flex justify-content-center">
+              <%= link_to "MARK AS COMPLETE", complete_task_path(@category.id, @task), method: :put, class: 'mt-0 btn btn-success' %>
+            </div>
+          <% end %>
         </th>
       </tr>
     </tbody>

@@ -1,7 +1,13 @@
 class TasksController < ApplicationController
   before_action :get_category
+
   def index
-    @tasks = @category.tasks
+    if params[:date]
+      @tasks = @category.tasks.where(date: Date.today)
+      render template: 'tasks/show_due.html.erb'
+    else
+      @tasks = @category.tasks
+    end
   end
 
   def new
@@ -12,8 +18,10 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
 
     if @task.save
+      @task.completed = false
+      @task.save
       redirect_to category_path(@category)
-      flash[:success] = "Task created!"
+      flash[:success] = "New task: #{@task.name.upcase}"
     else
       render :new
     end
@@ -32,7 +40,7 @@ class TasksController < ApplicationController
 
     if @task.update(task_params)
       redirect_to category_task_path(@category, @task)
-      flash[:warning] = "Task updated!"
+      flash[:warning] = "Task updated: #{@task.name.upcase}"
     else
       render :edit
     end
@@ -42,8 +50,24 @@ class TasksController < ApplicationController
     @task = @category.tasks.find(params[:id])
     @task.destroy
     redirect_to category_path(@category)
-    flash[:danger] = "Task deleted!"
+    flash[:danger] = "Task deleted: #{@task.name.upcase}"
   end
+
+ def completed
+   @task = @category.tasks.find(params[:id])
+   @task.completed = true
+   @task.save
+   redirect_to category_path(@category)
+   flash[:success] = "Completed: #{@task.name.upcase}"
+ end
+
+ def incomplete
+   @task = @category.tasks.find(params[:id])
+   @task.completed = false
+   @task.save
+   redirect_to category_path(@category)
+   flash[:danger] = "Pending: #{@task.name.upcase}"
+ end
 
   private
 

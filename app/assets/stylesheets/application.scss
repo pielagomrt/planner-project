@@ -72,12 +72,24 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.login {
+    margin-top: 20px;
+    padding: 10px 30px;
+    padding-top: 5px;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .color-green {
   color: green;
 }
 
 .color-orange {
   color:rgb(228, 133, 16);
+}
+
+.color-navy {
+  color: navy;
 }
 
 .close {
@@ -104,4 +116,71 @@ select {
     padding-top: 5px;
     width: 35%;
     border-radius: 10px;
+}
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+
+.main {
+      margin-left: 37%;
+      width: 40%;
+      position: fixed;
+      top: 26.5%;
+      right: 1; 
+      z-index: 1;
+      // border: 2px solid black;
+  }
+
+  .sidenav{
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #343A40;
+  }
+
+  .login-form{
+      // margin-top: 20%;
+      padding: 50px;
+      padding-left: 65px;
+      padding-right: 0;
+      margin-right: 0;
+
+  }
+
+  .register-form{
+      margin-top: 20%;
+  }
+// }
+
+
+.login-main-text{
+    margin-top: 27%;
+    padding: 100px;
+    // padding-left: 300px;
+    color: #fff;
+    text-align: right;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+    font-size: 50px;
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
 }

@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
 
     if @category.save
       redirect_to categories_path
-      flash[:success] = "Successfully created a category"
+      flash[:success] = "Category created: #{@category.name.upcase}"
     else
       render :new
     end
@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
 
     if @category.update(categories_params)
       redirect_to category_path(@category)
-      flash[:warning] = "Successfully updated a category!"
+      flash[:warning] = "Category updated: #{@category.name.upcase}"
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     redirect_to categories_path
-    flash[:danger] = "Successfully deleted a category"
+    flash[:danger] = "Category deleted: #{@category.name.upcase}"
   end
 
 

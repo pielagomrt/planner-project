@@ -30,7 +30,9 @@
               <%= category.name.upcase %>
             </h4>
             <p class="group inner grid-group-item-text text-muted text-center">
-              <small><i>Updated <%= time_ago_in_words(category.updated_at) %> ago</i></small>
+              <small><i>Updated <%= time_ago_in_words(category.updated_at) %> ago</i></small><br/>
+              <small><b>Tasks : <%= category.tasks.where(completed: false).count %></b></small><br/>
+              <small class="text-danger"><b>DUE TODAY : <%= category.tasks.where(date: Date.today, completed: false).count %></b></small>
             </p>
             <div class="btn-block btn-sm">
               <%= link_to category_path(category), class: 'btn btn-info pull-right btn-sm btn-block font-weight-bold' do %>

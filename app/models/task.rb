@@ -9,9 +9,16 @@ class Task < ApplicationRecord
 
     validate :past_date_invalid
 
+    # scope :completed, where(:completed =>true)
+    # scope :incomplete, where(:completed =>false)
+
+    scope :completed, -> { where(completed: true) }
+    scope :incomplete, -> { where(completed: false) }
+    
+    
     def past_date_invalid
         if date.present? && date < Date.today
         errors.add(:date, " cannot be in the past")
         end
-    end                        
+    end                 
 end
