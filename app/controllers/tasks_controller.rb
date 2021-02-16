@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def index
     if params[:date]
-      @tasks = @category.tasks.where(date: Date.today)
+      @tasks = @category.tasks.where(date: Date.today, completed: false)
       render template: 'tasks/show_due.html.erb'
     else
       @tasks = @category.tasks
