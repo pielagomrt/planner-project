@@ -4,11 +4,11 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
 
   test 'should delete a category' do
     # get id
-    fixture = categories(:one)
+    category = categories(:category_one)
 
     # delete button
     assert_difference 'Category.count', -1 do
-      delete category_path(fixture)
+      delete category_path(category)
       assert_response :redirect
     end
             

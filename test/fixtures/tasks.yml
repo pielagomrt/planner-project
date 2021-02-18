@@ -4,14 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-  category_id: 980190962
-  name: one
+task_one:
+  name: name1
   description: description1
-  date: 14-Feb-2021
+  date: 2022-01-21
+  category: category_one
 
-two:
-  category_id: 980190963
+task_two:
   name: name2
   description: description2
-  date: 14-Feb-2021
+  date: 2021-12-11
+  category: category_two

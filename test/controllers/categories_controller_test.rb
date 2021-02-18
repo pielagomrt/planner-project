@@ -12,14 +12,14 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "3. should get show" do
-    fixture = categories(:one)
-    get category_path(fixture)
+    category = categories(:category_one)
+    get category_path(category)
     assert_response :success
   end
 
   test "4. should get edit" do
-    fixture = categories(:one)
-    get edit_category_path(fixture)
+    category = categories(:category_one)
+    get edit_category_path(category)
     assert_response :success
   end
 end

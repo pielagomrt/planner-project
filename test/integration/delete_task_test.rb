@@ -4,12 +4,12 @@ class DeleteTaskTest < ActionDispatch::IntegrationTest
 
   test 'should delete a category' do
     # get id
-    category = categories(:one)
-    task = tasks(:one)
+    category = categories(:category_one)
+    task = tasks(:task_one)
     
     # delete button
     assert_difference 'Task.count', -1 do
-      delete category_task_path(category.id, task.id)
+      delete category_task_path(category, task)
       assert_response :redirect
     end
             
