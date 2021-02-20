@@ -9,9 +9,12 @@ task_one:
   description: description1
   date: 2022-01-21
   category: category_one
+  user: user_one
+
 
 task_two:
   name: name2
   description: description2
   date: 2021-12-11
   category: category_two
+  user: user_two

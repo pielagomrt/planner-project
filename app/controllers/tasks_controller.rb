@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :get_user
   before_action :get_category
 
   def index
@@ -16,11 +18,12 @@ class TasksController < ApplicationController
 
   def create
     @task = @category.tasks.build(task_params)
+    @task.user = @user
 
     if @task.save
       @task.completed = false
       @task.save
-      redirect_to category_path(@category)
+      redirect_to user_category_path(@user, @category)
       flash[:success] = "New task: #{@task.name.upcase}"
     else
       render :new
@@ -37,9 +40,10 @@ class TasksController < ApplicationController
 
   def update
     @task = @category.tasks.find(params[:id])
+    @task.user = @user
 
     if @task.update(task_params)
-      redirect_to category_task_path(@category, @task)
+      redirect_to user_category_task_path(@user, @category, @task)
       flash[:warning] = "Task updated: #{@task.name.upcase}"
     else
       render :edit
@@ -48,8 +52,10 @@ class TasksController < ApplicationController
 
   def destroy
     @task = @category.tasks.find(params[:id])
+    @task.user = @user
+
     @task.destroy
-    redirect_to category_path(@category)
+    redirect_to user_category_path(@user, @category)
     flash[:danger] = "Task deleted: #{@task.name.upcase}"
   end
 
@@ -57,7 +63,7 @@ class TasksController < ApplicationController
    @task = @category.tasks.find(params[:id])
    @task.completed = true
    @task.save
-   redirect_to category_path(@category)
+   redirect_to user_category_path(@user, @category)
    flash[:success] = "Completed: #{@task.name.upcase}"
  end
 
@@ -65,17 +71,21 @@ class TasksController < ApplicationController
    @task = @category.tasks.find(params[:id])
    @task.completed = false
    @task.save
-   redirect_to category_path(@category)
+   redirect_to user_category_path(@user, @category)
    flash[:danger] = "Pending: #{@task.name.upcase}"
  end
 
   private
+
+  def get_user
+    @user = current_user
+  end
 
   def get_category
     @category = Category.find(params[:category_id])
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :date, :category_id)
+    params.require(:task).permit(:name, :description, :date, :category_id, :user_id)
   end
 end

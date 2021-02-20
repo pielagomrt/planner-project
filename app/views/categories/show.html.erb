@@ -1,8 +1,8 @@
 <%= render template: 'layouts/tasks_header.html.erb' %>
 
 <div class="d-flex justify-content-center mb-3">
-  <%= link_to 'Add Task', new_category_task_path(@category), class: 'btn btn-success mr-2' %>
-  <%= link_to "Due Today", category_tasks_path(@category, date: Date.today), class: 'btn btn-info ml-3' %>
+  <%= link_to 'Add Task', new_user_category_task_path(@user, @category), class: 'btn btn-success mr-2' %>
+  <%= link_to "Due Today", user_category_tasks_path(@user, @category, date: Date.today), class: 'btn btn-info ml-3' %>
 </div>
 
 <% if flash.any? %>

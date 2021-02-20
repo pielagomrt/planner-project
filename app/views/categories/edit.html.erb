@@ -1,6 +1,6 @@
 <%= render template: 'layouts/category_header.html.erb' %>
-
-<%= form_with scope: :category, model: @category, local: true do |f| %>
+<br/>
+<%= form_with scope: :category, model: [@user, @category], local: true do |f| %>
     <p>
       <% if @category.errors.any? %>
         <ul>
@@ -17,9 +17,9 @@
 <% end %>
 
 <div class="container masthead">
-  <%= form_with scope: :category, model: @category, local: true do |f| %>
+  <%= form_with scope: :category, model: [@user, @category], local: true do |f| %>
     <p>
-      <%= link_to '✖', categories_path, class: 'btn-sm close align-middle' %>
+      <%= link_to '✖', user_categories_path(@user), class: 'btn-sm close align-middle' %>
     </p>
     <br/>
     <legend class="text-center font-weight-bold color-orange">

@@ -8,10 +8,10 @@ user_one:
   first_name: fname1
   last_name: lname1
   email: name1@gmail.com
-  encrypted_password: 1234567
+  encrypted_password: <%= User.new.send(:password_digest, '1234567') %>
 #
 user_two:
   first_name: fname2
   last_name: lname2
   email: name2@gmail.com
-  encrypted_password: 2345678
+  encrypted_password: <%= User.new.send(:password_digest, '3456789') %>

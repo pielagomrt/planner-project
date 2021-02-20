@@ -1,23 +1,23 @@
-<%= form_with scope: :task, model: [@category, @task], local: true do |f| %>
-    <p>
-      <% if @task.errors.any? %>
-        <ul>
-          <div class="alert alert-dismissible alert-danger">
-            <% @task.errors.full_messages.each do |message| %>
-              <li class= "text-danger list-unstyled">
-                <strong>ERROR: <%= message %></strong>
-              </li>
-            <% end %>
-          </div> 
-        </ul>
-      <% end %>
-    </p>
-<% end %>
+<%= form_with scope: :task, model: [@user, @category, @task], local: true do |f| %>
+      <p>
+        <% if @task.errors.any? %>
+          <ul>
+            <div class="alert alert-dismissible alert-danger">
+              <% @task.errors.full_messages.each do |message| %>
+                <li class= "text-danger list-unstyled">
+                  <strong>ERROR: <%= message %></strong>
+                </li>
+              <% end %>
+            </div> 
+          </ul>
+        <% end %>
+      </p>
+  <% end %>
 
 <div class="container masthead">
-  <%= form_with scope: :task, model: [@category, @task], local: true do |f| %>
+  <%= form_with scope: :task, model: [@user, @category, @task], local: true do |f| %>
     <p>
-      <%= link_to '✖', category_path(@category), class: 'btn-sm close align-middle' %>
+      <%= link_to '✖', user_category_path(@user, @category), class: 'btn-sm close align-middle' %>
     </p>
     <br/>
     <legend class="text-center font-weight-bold color-green">

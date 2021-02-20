@@ -1,12 +1,14 @@
-<header>
-  <nav class="navbar bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <strong class="name">WELCOME!</strong>
-      </a>
-      <a class="navbar-brand" href="#">
-        <strong class="btn btn-light font-weight-bold btn-nav">Logout</strong>
-      </a>
-    </div>
-  </nav>
-<header>
+<% if current_user %>
+  <header>
+    <nav class="navbar bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <strong class="name">PLANNER APP</strong>
+        </a>
+        <div class="navbar-brand">
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-default btn-sm' %>
+        </div>
+        </div>
+    </nav>
+  <header>
+<% end %>

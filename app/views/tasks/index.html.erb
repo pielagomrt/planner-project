@@ -15,7 +15,7 @@
           <tr>
             <div class="col-sm-10">
               <td scope="row">
-                <%= link_to "View", category_task_path(@category.id, task.id), class: 'btn btn-primary ml-3 btn-sm' %>
+                <%= link_to "View", user_category_task_path(@user.id, @category.id, task.id), class: 'btn btn-primary ml-3 btn-sm' %>
               </td>
               <td class="font-weight-bold align-middle text-uppercase">
                 <%= task.name %>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-2">
               <td class=" d-flex justify-content-center">
-                <%= link_to "DONE", complete_task_path(@category.id, task.id), method: :put, class: 'btn btn-success pull-right btn-sm'%>
+                <%= link_to "DONE", complete_task_path(@user, @category, task), method: :put, class: 'btn btn-success pull-right btn-sm'%>
               </td>
             </div>
           </tr>
@@ -51,7 +51,7 @@
           <tr>
             <div class="col-sm-10">
               <td scope="row">
-                <%= link_to "View", category_task_path(@category.id, task.id), class: 'btn btn-primary ml-3 btn-sm' %>
+                <%= link_to "View", user_category_task_path(@user, @category, task), class: 'btn btn-primary ml-3 btn-sm' %>
               </td>
               <td class="font-weight-bold align-middle text-uppercase">
                 <%= task.name %>
@@ -62,7 +62,7 @@
             </div>
             <div class="col-sm-2">
               <td class=" d-flex justify-content-center">
-                <%= link_to "Undo", incomplete_task_path(@category.id, task.id), method: :delete, class: 'btn btn-danger pull-right btn-sm'%>
+                <%= link_to "Undo", incomplete_task_path(@user, @category, task), method: :delete, class: 'btn btn-danger pull-right btn-sm'%>
               </td>
             </div>
           </tr>

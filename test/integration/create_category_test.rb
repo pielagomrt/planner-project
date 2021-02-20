@@ -1,15 +1,22 @@
 require 'test_helper'
 
 class CreateCategoryTest < ActionDispatch::IntegrationTest
+
+  setup do
+    get '/users/sign_in'
+    sign_in users(:user_one)
+    post user_session_url
+  end
   
   test "should go to new category form and create category" do
     # go to new category path
-    get new_category_path
+    user = users(:user_one)
+    get new_user_category_path(user)
     assert_response :success
 
     # submit form
     assert_difference 'Category.count', 1 do
-      post categories_path, params: { category: { name: 'Lorem Ipsum' } }
+      post user_categories_path(user), params: { category: { name: 'Lorem Ipsum' } }
       assert_response :redirect
     end
             

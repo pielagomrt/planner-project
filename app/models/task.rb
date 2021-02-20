@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+    belongs_to :user
     belongs_to :category
 
     validates :name, presence: true,
@@ -9,16 +10,13 @@ class Task < ApplicationRecord
 
     validate :past_date_invalid
 
-    # scope :completed, where(:completed =>true)
-    # scope :incomplete, where(:completed =>false)
-
     scope :completed, -> { where(completed: true) }
     scope :incomplete, -> { where(completed: false) }
     
     
     def past_date_invalid
-        if date.present? && date < Date.today
-        errors.add(:date, " cannot be in the past")
-        end
+      if date.present? && date < Date.today
+      errors.add(:date, " cannot be in the past")
+      end
     end                 
 end

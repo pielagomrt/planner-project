@@ -2,6 +2,9 @@
 
 category_one:
   name: MyString
+  user: user_one
+  
 
 category_two:
   name: MyString
+  user: user_two

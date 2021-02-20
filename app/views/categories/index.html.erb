@@ -1,26 +1,31 @@
 <%= render template: 'layouts/category_header.html.erb' %>
 
-<% if flash.any? %>
-  <% flash.each do |key, value| %>
-    <div class="alert alert-dismissible alert-<%= key.to_s %>">
-      <a class="close" data-dismiss="alert" aria-label="close" href='#'>&times;</a> 
-      <strong><%= value %></strong>
-    </div>
+<div>
+  <% flash.each do |type, msg| %>
+        <% if type == "notice" %>
+          <div class="alert alert-dismissible alert-success">
+        <% elsif type == "alert" %>
+          <div class="alert alert-dismissible alert-danger">
+        <% else %>
+          <div class='alert alert-dismissible alert-<%= "#{type}" %>'>
+        <% end %>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong><%= msg %></strong>
   <% end %>
-<% end %>
+</div>
 
 <div class="d-flex justify-content-center">
-  <%= link_to "Add Category", new_category_path, class: 'btn btn-success btn-lg btn-add' %>
+  <%= link_to "Add Category", new_user_category_path(@user), class: 'btn btn-success btn-lg btn-add' %>
 </div>
 
 <div class="container">
   <div id="products" class="row grid-group">
     <% @categories.each do |category| %>
       <div class="item col-xs-4 col-lg-3 mx-4 my-4">
-        <%= link_to category_path(category), class: 'btn-sm close align-middle float-right', method: :delete, data: { confirm: 'Delete this CATEGORY?' } do %>
+        <%= link_to user_category_path(@user, category), class: 'btn-sm close align-middle float-right', method: :delete, data: { confirm: 'Delete this CATEGORY?' } do %>
           <span>❌</span>
         <% end %>
-        <%= link_to edit_category_path(category), class: 'btn-sm close align-middle float-left' do %>
+        <%= link_to edit_user_category_path(@user, category), class: 'btn-sm close align-middle float-left' do %>
           <span>✏</span>
         <% end %>
         <br/><br/>
@@ -35,7 +40,7 @@
               <small class="text-danger"><b>DUE TODAY : <%= category.tasks.where(date: Date.today, completed: false).count %></b></small>
             </p>
             <div class="btn-block btn-sm">
-              <%= link_to category_path(category), class: 'btn btn-info pull-right btn-sm btn-block font-weight-bold' do %>
+              <%= link_to user_category_path(@user, category), class: 'btn btn-info pull-right btn-sm btn-block font-weight-bold' do %>
                 <span>View</span>
               <% end %>                    
             </div>

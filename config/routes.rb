@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "categories#index"
   post '/tasks/show_due', to: 'tasks#index'
-  match '/categories/:category_id/tasks/:id/complete' => 'tasks#completed', as: 'complete_task', via: :put
-  match '/categories/:category_id/tasks/:id/complete' => 'tasks#incomplete', as: 'incomplete_task', via: :delete
-  resources :categories do
-    resources :tasks
+  match 'users/:user_id/categories/:category_id/tasks/:id/complete' => 'tasks#completed', as: 'complete_task', via: :put
+  match 'users/:user_id/categories/:category_id/tasks/:id/complete' => 'tasks#incomplete', as: 'incomplete_task', via: :delete
+  
+  
+  resources :users do
+    resources :categories do
+      resources :tasks
+    end
   end
 
    # get 'categories/' => 'categories#index', as: 'categories'
