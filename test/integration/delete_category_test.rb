@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class DeleteCategoryTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   
   setup do
     get '/users/sign_in'

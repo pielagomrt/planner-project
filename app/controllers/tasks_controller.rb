@@ -59,21 +59,21 @@ class TasksController < ApplicationController
     flash[:danger] = "Task deleted: #{@task.name.upcase}"
   end
 
- def completed
-   @task = @category.tasks.find(params[:id])
-   @task.completed = true
-   @task.save
-   redirect_to user_category_path(@user, @category)
-   flash[:success] = "Completed: #{@task.name.upcase}"
- end
+  def completed
+    @task = @category.tasks.find(params[:id])
+    @task.completed = true
+    @task.save
+    redirect_to user_category_path(@user, @category)
+    flash[:success] = "Completed: #{@task.name.upcase}"
+  end
 
- def incomplete
-   @task = @category.tasks.find(params[:id])
-   @task.completed = false
-   @task.save
-   redirect_to user_category_path(@user, @category)
-   flash[:danger] = "Pending: #{@task.name.upcase}"
- end
+  def incomplete
+    @task = @category.tasks.find(params[:id])
+    @task.completed = false
+    @task.save
+    redirect_to user_category_path(@user, @category)
+    flash[:danger] = "Pending: #{@task.name.upcase}"
+  end
 
   private
 

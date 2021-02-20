@@ -9,46 +9,46 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     post user_session_url
   end
 
-  test "1. should get index" do
+  test "1. should get categories index" do
     user = users(:user_one)
     get user_categories_path(user)
     assert_response :success
   end
 
-  test "2. should get new" do
+  test "2. should get new category" do
     user = users(:user_one)
     get new_user_category_path(user)
     assert_response :success
   end
 
-  test "3. should create" do
+  test "3. should create category" do
     user = users(:user_one)
     post user_categories_path(user), params: { category: { name: 'Lorem Ipsum' } }
     assert_response :redirect
   end
 
-  test "4. should get show" do
+  test "4. should show category" do
     user = users(:user_one)
     category = categories(:category_one)
     get user_category_path(user, category)
     assert_response :success
   end
 
-  test "5. should get edit" do
+  test "5. should edit category" do
     user = users(:user_one)
     category = categories(:category_one)
     get edit_user_category_path(user, category)
     assert_response :success
   end
 
-  test "6. should update" do
+  test "6. should update category" do
     user = users(:user_one)
     category = categories(:category_one)
     put user_category_path(user, category), params: { category: { name: 'Lorem' } }
     assert_response :redirect
   end
 
-  test "7. should delete" do
+  test "7. should delete category" do
     user = users(:user_one)
     category = categories(:category_one)
     delete user_category_path(user, category)
