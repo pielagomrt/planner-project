@@ -1,42 +1,49 @@
-<div>
+<div class="main-div my-5 pt-3 px-5">
   <% flash.each do |type, msg| %>
-        <% if type == "notice" %>
-          <div class="alert alert-dismissible alert-success">
-        <% elsif type == "alert" %>
-          <div class="alert alert-dismissible alert-danger">
-        <% else %>
-          <div class='alert alert-dismissible alert-<%= "#{type}" %>'>
-        <% end %>
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong><%= msg %></strong>
+    <% if type == "notice" %>
+      <div class="alert alert-success">
+    <% elsif type == "alert" %>
+      <div class="alert alert-danger">
+    <% else %>
+      <div class='alert alert-<%= "#{type}" %>'>
+    <% end %>
+    <strong><%= msg %></strong>
   <% end %>
 </div>
 
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="sidenav">
+  <div class="login-main-text">
+    <h2>PLANNER<br>APP</h2>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+    <div class="login-form">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <h2 class='display-4'>LOGIN</h2><br/>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="field form-group">
+          <%= f.label :email, class: 'text-muted' %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :password, class: 'text-muted' %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+        </div>
+
+        <div class='d-flex justify-content-between align-items-center'>
+          <div class="actions">
+            <%= f.submit "Log in", class: 'btn btn-black' %>
+          </div>
+          <p class="mb-0"><%= link_to "Forgot your password?", new_password_path(resource_name), class: 'text-info small' %></p>
+        </div>
+        
+      <% end %>
+      <br/>
+      <p>Don't have an account? <%= link_to "Register here.", new_registration_path(resource_name) %><br />
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
+</div>
 

@@ -26,6 +26,8 @@
         <th>STATUS</th>
         <% if @task.completed? %>
           <td class="text-success font-weight-bold">COMPLETED</td>
+        <% elsif @task.date < Date.today && @task.completed === false %>
+          <td class="text-danger font-weight-bold">PENDING FOR <%= distance_of_time_in_words(@task.date, Date.today).upcase %></td>
         <% else %>
           <td class="text-danger font-weight-bold">PENDING</td>
         <% end %>

@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.new
     user.last_name = 'Ipsum'
     user.email = 'lorem@gmail.com'
-    user.encrypted_password = '9876543'
+    user.encrypted_password = User.new.send(:password_digest, '1234567')
     assert_not user.save, 'Saved User without first name'
   end
 
@@ -13,7 +13,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.new
     user.first_name = 'Lorem'
     user.email = 'lorem@gmail.com'
-    user.encrypted_password = '9876543'
+    user.encrypted_password = User.new.send(:password_digest, '1234567')
     assert_not user.save, 'Saved User without last name'
   end
 
@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.new
     user.first_name = 'Lorem'
     user.last_name = 'Ipsum'
-    user.encrypted_password = '9876543'
+    user.encrypted_password = User.new.send(:password_digest, '1234567')
     assert_not user.save, 'Saved User without email'
   end
 

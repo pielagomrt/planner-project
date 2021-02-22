@@ -14,6 +14,7 @@ class TaskTest < ActiveSupport::TestCase
     task.date = '20-Feb-2021'
     assert_not task.save, 'Saved Task without description'
   end
+  
   test "3. should not save Task without date" do
     task = Task.new
     task.name = 'Lorem'

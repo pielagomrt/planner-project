@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   def index
     if params[:date]
-      @tasks = @category.tasks.where(date: Date.today, completed: false)
+      @tasks = @category.tasks.where('date <= ?', Date.today).where(completed: false)
       render template: 'tasks/show_due.html.erb'
     else
       @tasks = @category.tasks
@@ -20,13 +20,13 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
     @task.user = @user
 
-    if @task.save
+    if past_date_invalid(@task)
+      render :new 
+    else
       @task.completed = false
       @task.save
       redirect_to user_category_path(@user, @category)
       flash[:success] = "New task: #{@task.name.upcase}"
-    else
-      render :new
     end
   end
 
@@ -46,7 +46,7 @@ class TasksController < ApplicationController
       redirect_to user_category_task_path(@user, @category, @task)
       flash[:warning] = "Task updated: #{@task.name.upcase}"
     else
-      render :edit
+      render :edit 
     end
   end
 
@@ -88,4 +88,10 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:name, :description, :date, :category_id, :user_id)
   end
+
+  def past_date_invalid(params)
+    if params.present? && params.date < Date.today
+      params.errors.add(:date, " cannot be in the past")
+    end
+  end  
 end
