@@ -57,10 +57,12 @@ class CategoriesController < ApplicationController
 
   private
 
+
   def get_user
     @user = current_user
   end
 
+  
   def categories_params
     params.require(:category).permit(:name, :user_id)
   end

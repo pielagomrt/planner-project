@@ -12,9 +12,11 @@ class TasksController < ApplicationController
     end
   end
 
+
   def new
     @task = @category.tasks.build
   end
+
 
   def create
     @task = @category.tasks.build(task_params)
@@ -30,13 +32,16 @@ class TasksController < ApplicationController
     end
   end
 
+
   def show
     @task = @category.tasks.find(params[:id])
   end
 
+
   def edit
     @task = @category.tasks.find(params[:id])
   end
+
 
   def update
     @task = @category.tasks.find(params[:id])
@@ -50,6 +55,7 @@ class TasksController < ApplicationController
     end
   end
 
+
   def destroy
     @task = @category.tasks.find(params[:id])
     @task.user = @user
@@ -59,6 +65,7 @@ class TasksController < ApplicationController
     flash[:danger] = "Task deleted: #{@task.name.upcase}"
   end
 
+
   def completed
     @task = @category.tasks.find(params[:id])
     @task.completed = true
@@ -66,6 +73,7 @@ class TasksController < ApplicationController
     redirect_to user_category_path(@user, @category)
     flash[:success] = "Completed: #{@task.name.upcase}"
   end
+
 
   def incomplete
     @task = @category.tasks.find(params[:id])
@@ -75,23 +83,29 @@ class TasksController < ApplicationController
     flash[:danger] = "Pending: #{@task.name.upcase}"
   end
 
+
   private
+
 
   def get_user
     @user = current_user
   end
 
+
   def get_category
     @category = Category.find(params[:category_id])
   end
+
 
   def task_params
     params.require(:task).permit(:name, :description, :date, :category_id, :user_id)
   end
 
+
   def past_date_invalid(params)
     if params.present? && params.date < Date.today
       params.errors.add(:date, " cannot be in the past")
     end
-  end  
+  end
+    
 end
