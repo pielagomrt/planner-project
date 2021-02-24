@@ -22,13 +22,13 @@ class TasksController < ApplicationController
     @task = @category.tasks.build(task_params)
     @task.user = @user
 
-    if past_date_invalid(@task)
-      render :new 
-    else
+    if @task.save
       @task.completed = false
       @task.save
       redirect_to user_category_path(@user, @category)
       flash[:success] = "New task: #{@task.name.upcase}"
+    else
+      render :new
     end
   end
 
@@ -99,13 +99,6 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :description, :date, :category_id, :user_id)
-  end
-
-
-  def past_date_invalid(params)
-    if params.present? && params.date < Date.today
-      params.errors.add(:date, " cannot be in the past")
-    end
   end
     
 end

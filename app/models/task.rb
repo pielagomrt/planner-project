@@ -8,15 +8,6 @@ class Task < ApplicationRecord
     validates :description, presence: true,
                             length: { minimum: 3, maximum: 500 }
 
-    # validate :past_date_invalid
-
     scope :completed, -> { where(completed: true) }
-    scope :incomplete, -> { where(completed: false) }
-    
-    
-    # def past_date_invalid
-    #   if date.present? && date < Date.today
-    #   errors.add(:date, " cannot be in the past")
-    #   end
-    # end                 
+    scope :incomplete, -> { where(completed: false) }             
 end

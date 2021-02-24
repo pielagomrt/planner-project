@@ -7,11 +7,12 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
     get '/users/sign_in'
     sign_in users(:user_one)
     post user_session_url
+
+    @user = users(:user_one)
   end
   
   test "should go to new category form and create category" do
     # go to new category path
-    @user = users(:user_one)
     get new_user_category_path(@user)
     assert_response :success
 

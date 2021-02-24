@@ -15,7 +15,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   test "1. should get categories index" do
     get user_categories_path(@user)
     assert_response :success
-  end
+  end  
 
   test "2. should get new category" do
     get new_user_category_path(@user)

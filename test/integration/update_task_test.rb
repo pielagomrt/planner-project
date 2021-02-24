@@ -7,13 +7,14 @@ class UpdateTaskTest < ActionDispatch::IntegrationTest
     get '/users/sign_in'
     sign_in users(:user_one)
     post user_session_url
+
+    @user = users(:user_one)
+    @category = categories(:category_one)
+    @task = tasks(:task_one)
   end
 
   test 'should go to edit task form and update task' do
     # go to edit task path
-    @user = users(:user_one)
-    @category = categories(:category_one)
-    @task = tasks(:task_one)
     get edit_user_category_path(@user, @category)
     assert_response :success
 
