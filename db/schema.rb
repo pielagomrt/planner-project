@@ -10,17 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_145818) do
+ActiveRecord::Schema.define(version: 2021_02_24_115955) do
 
   create_table "categories", force: :cascade do |t|
-    t.integer "user_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "category_id"
     t.string "name"
     t.text "description"
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_145818) do
     t.boolean "completed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

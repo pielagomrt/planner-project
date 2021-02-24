@@ -11,12 +11,12 @@ class DeleteCategoryTest < ActionDispatch::IntegrationTest
 
   test 'should delete a category' do
     # get id
-    user = users(:user_one)
-    category = categories(:category_one)
+    @user = users(:user_one)
+    @category = categories(:category_one)
 
     # delete button
     assert_difference 'Category.count', -1 do
-      delete user_category_path(user, category)
+      delete user_category_path(@user, @category)
       assert_response :redirect
     end
             
