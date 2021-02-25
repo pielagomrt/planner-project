@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   # for due today
   post '/tasks/show_due', to: 'tasks#index'
 
-  # for assigning complete and incomplete
-  match 'users/:user_id/categories/:category_id/tasks/:id/complete' => 'tasks#completed', as: 'complete_task', via: :put
-  match 'users/:user_id/categories/:category_id/tasks/:id/complete' => 'tasks#incomplete', as: 'incomplete_task', via: :delete
+  # for assigning complete and pending
+  match 'users/:user_id/categories/:category_id/tasks/:id/completed' => 'tasks#completed', as: 'completed_task', via: :put
+  match 'users/:user_id/categories/:category_id/tasks/:id/pending' => 'tasks#pending', as: 'pending_task', via: :put
   
   resources :users do
     resources :categories do

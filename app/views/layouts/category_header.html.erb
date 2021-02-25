@@ -1,4 +1,8 @@
 <div class="text-muted mt-4 mb-4 text-center display-4">
-  WELCOME, <%= @user.first_name.upcase %>!
+  HELLO, <%= @user.first_name.upcase %> <%= @user.last_name.upcase %>!
+</div>
+<div class="color-navy mt-3 mb-4 text-center display-6">
+  <strong><%= Date.today.strftime("%^B %-d, %Y") %></strong>
+  <strong class="text-info"><%= Date.today.strftime("%^A") %></strong>
 </div>
 <hr>

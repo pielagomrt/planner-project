@@ -50,11 +50,11 @@
         <th colspan="2">
           <% if @task.completed? %>
             <div class="d-flex justify-content-center">
-              <%= link_to "MARK AS PENDING", incomplete_task_path(@user, @category, @task), method: :delete, class: 'mt-0 btn btn-danger' %>
+              <%= link_to "MARK AS PENDING", pending_task_path(@user, @category, @task), method: :put, class: 'mt-0 btn btn-danger' %>
             </div>
           <% else %>
             <div class="d-flex justify-content-center">
-              <%= link_to "MARK AS COMPLETED", complete_task_path(@user, @category, @task), method: :put, class: 'mt-0 btn btn-success' %>
+              <%= link_to "MARK AS COMPLETED", completed_task_path(@user, @category, @task), method: :put, class: 'mt-0 btn btn-success' %>
             </div>
           <% end %>
         </th>

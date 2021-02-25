@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.text :description
       t.date :date
       t.boolean :completed
+      
       t.timestamps
     end
   end

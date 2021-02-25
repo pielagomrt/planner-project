@@ -75,7 +75,7 @@ class TasksController < ApplicationController
   end
 
 
-  def incomplete
+  def pending
     @task = @category.tasks.find(params[:id])
     @task.completed = false
     @task.save

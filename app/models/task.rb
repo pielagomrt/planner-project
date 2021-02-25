@@ -9,5 +9,5 @@ class Task < ApplicationRecord
                             length: { minimum: 3, maximum: 500 }
 
     scope :completed, -> { where(completed: true) }
-    scope :incomplete, -> { where(completed: false) }             
+    scope :pending, -> { where(completed: false) }             
 end

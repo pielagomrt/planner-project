@@ -1,9 +1,9 @@
 <% if current_user %>
   <header>
     <nav class="navbar bg-dark fixed-top">
-      <div class="container">
+      <div class="container d-flex justify-content-between">
         <a class="navbar-brand" href="#">
-          <strong class="name">PLANNER APP</strong>
+          <strong class="name">PLANNER APP</strong> | <small>logged in as <strong class="name"><%= current_user.email %></strong></small>
         </a>
         <div class="navbar-brand">
           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-default btn-sm' %>

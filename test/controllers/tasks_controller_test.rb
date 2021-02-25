@@ -49,12 +49,12 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "8. should assign task as complete" do
-    put complete_task_path(@user, @category, @task)
+    put completed_task_path(@user, @category, @task)
     assert_response :redirect
   end
 
-  test "9. should assign task as incomplete" do
-    delete incomplete_task_path(@user, @category, @task)
+  test "9. should assign task as pending" do
+    put pending_task_path(@user, @category, @task)
     assert_response :redirect
   end
 end
